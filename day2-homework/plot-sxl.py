@@ -17,8 +17,9 @@ print( "data: ", data[0:5, 0:5] )
 
 # Find row with transcript of interest
 for i in range(len(transcripts)):
-    if transcripts[i] == 'FBtr0331261':
+    if transcripts[i] == 'FBtr0073461':
         row = i
+print(row)
 
 # Find columns with samples of interest
 colsf = []
@@ -26,9 +27,12 @@ colsm = []
 for i in range(len(samples)):
     if "female" in samples[i]:
         colsf.append(i)
-    else:
+for i in range(len(samples)):
+    if not "female"  in samples[i]:
         colsm.append(i)
 
+
+print(colsm)
 # Subset data of interest
 expressionf = data[row, colsf]
 expressionm = data[row, colsm]
@@ -44,20 +48,20 @@ ym2 = 2*np.array(ym)
 print("Male data x2:")
 print(ym2)
 #combining samples
-x = [10, 11, 12, 13, "14A", "14B", "14C", "14D"]
+x = ['10', '11', '12', '13', "14A", "14B", "14C", "14D"]
 
 
 # Plot data
 fig, ax = plt.subplots()
-ax.set_title( "FBtr0331261" )
+ax.set_title( "FBtr0073461" )
 ax.plot( x, yf, label= "Female", c ="hotpink")
 ax.plot(x, ym2, label = "Male", c = "blue")
 ax.set_ylabel("Expression")
 ax.set_xlabel("Samples")
 ax.legend()
 plt.tight_layout()
-ax.set_title("FBtr0331261")
-fig.savefig( "FBtr0331261.png" )
+ax.set_title("FBtr0073461")
+fig.savefig( "FBtr0073461.png" )
 plt.xticks(rotation = 90)
 plt.show()
 plt.close( fig )
