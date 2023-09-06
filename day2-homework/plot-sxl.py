@@ -21,21 +21,35 @@ for i in range(len(transcripts)):
         row = i
 
 # Find columns with samples of interest
-cols = []
+colsf = []
+colsm = []
 for i in range(len(samples)):
     if "female" in samples[i]:
-        cols.append(i)
+        colsf.append(i)
+    else:
+        colsm.append(i)
 
 # Subset data of interest
-expression = data[row, cols]
+expressionf = data[row, colsf]
+expressionm = data[row, colsm]
+print("Male data: ")
+print(expressionm)
 
 # Prepare data
-x = samples[cols]
-y = expression
+xf = samples[colsf]
+yf = expressionf
+xm = samples[colsm]
+ym = expressionm
+#combining samples
+x = [10, 11, 12, 13, "14A", "14B", "14C", "14D"]
+
 
 # Plot data
 fig, ax = plt.subplots()
 ax.set_title( "FBtr0331261" )
-ax.plot( x, y )
+ax.plot( x, yf, label= "Female")
+ax.plot(x, ym, label = "Male")
 fig.savefig( "FBtr0331261.png" )
+plt.xticks(rotation = 90)
+plt.show()
 plt.close( fig )
