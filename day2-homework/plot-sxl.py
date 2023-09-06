@@ -40,6 +40,9 @@ xf = samples[colsf]
 yf = expressionf
 xm = samples[colsm]
 ym = expressionm
+ym2 = 2*np.array(ym)
+print("Male data x2:")
+print(ym2)
 #combining samples
 x = [10, 11, 12, 13, "14A", "14B", "14C", "14D"]
 
