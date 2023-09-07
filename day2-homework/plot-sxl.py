@@ -6,30 +6,14 @@ import matplotlib.pyplot as plt
 # Get dataset to recreate Fig 3B from Lott et al 2011 PLoS Biology https://pubmed.gov/21346796
 # wget https://github.com/bxlab/cmdb-quantbio/raw/main/assignments/lab/bulk_RNA-seq/extra_data/all_annotated.csv
 
-file = open("all_annotated.csv", "r")
-lines = file.readlines()
+transcripts = np.loadtxt( "all_annotated.csv", delimiter=",", usecols=0, dtype="<U30", skiprows=1 )
+print( "transcripts: ", transcripts[0:5] )
 
-#transcripts = np.loadtxt( "all_annotated.csv", delimiter=",", usecols=0, dtype="<U30", skiprows=1 )
-#print( "transcripts: ", transcripts[0:5] )
-sample_list =[]
-data_list = []
-transcript_list =[]
-for l in (lines[0]):
-    sample_list.append(l)
-for j in lines:
-    data = lines[j]
-    data = data.rstrip("/n")
-    data_list = data.split(",")
-    data_list.append(j)
-print(sample_list)
-print(transcript_list)
-print(data_list)
+samples = np.loadtxt( "all_annotated.csv", delimiter=",", max_rows=1, dtype="<U30" )[2:]
+print( "samples: ", samples[0:5] )
 
-# samples = np.loadtxt( "all_annotated.csv", delimiter=",", max_rows=1, dtype="<U30" )[2:]
-# print( "samples: ", samples[0:5] )
-
-# data = np.loadtxt( "all_annotated.csv", delimiter=",", dtype=np.float32, skiprows=1, usecols=range(2, len(samples) + 2) )
-# print( "data: ", data[0:5, 0:5] )
+data = np.loadtxt( "all_annotated.csv", delimiter=",", dtype=np.float32, skiprows=1, usecols=range(2, len(samples) + 2) )
+print( "data: ", data[0:5, 0:5] )
 
 # Find row with transcript of interest
 for i in range(len(transcripts)):
@@ -71,7 +55,8 @@ x = ['10', '11', '12', '13', "14A", "14B", "14C", "14D"]
 fig, ax = plt.subplots()
 ax.set_title( "FBtr0073461" )
 ax.plot( x, yf, label= "Female", c ="hotpink")
-ax.plot(x, ym2, label = "Male ", c = "blue")
+ax.plot(x, ym, label = "Male", c = "blue")
+ax.plot(x, ym2, label = "Male X2", c = "lightblue")
 ax.set_ylabel("Expression")
 ax.set_xlabel("Samples")
 ax.legend()
