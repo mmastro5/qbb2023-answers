@@ -22,8 +22,9 @@
 # number of generations of fixation is the length of your list
 
 import numpy as np 
+import matplotlib.pyplot as plt
 
-frequency = 0.8
+frequency = 0.5
 popsize = 1000
 
 def wfmodel(pop, afreq):
@@ -34,4 +35,16 @@ def wfmodel(pop, afreq):
 		freq_list.append(afreq)
 	return freq_list
 
-print(wfmodel(popsize, frequency))
+# print(wfmodel(popsize, frequency))
+
+gen_num = []
+for i in range(1000):
+	my_output = wfmodel(popsize, frequency)
+	gen_num.append(len(my_output))
+
+
+fig, ax = plt.subplots()
+
+ax.hist(gen_num)
+plt.show()
+
