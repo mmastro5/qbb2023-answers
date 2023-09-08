@@ -1,0 +1,9 @@
+Wright Fisher exercise 4 answers:
+
+For any plot, explain the results you see. What might be contributing to it? What does it mean biologically
+
+1: The multiple allele frequency model is observing the same frequency (0.5) and population size in different simulations all taking their own path. Each path ends with 0 or 1 to represent the fixation point and there is a variety of times for when these projections reach that point due to the randomness of the function. 
+
+2. The generation until fixation histogram is showing that there is a peak of the number of generations until fixation to when most of the projections reach fixation. However, due to the randomness innately in the function of tracking an allele it creates a curve where some projections reach fixation in a smaller amount of generations and some in a larger amount of generations. So, biologically, there is a predicted generation time to fixation for each population size and allele frequency, but due to the randomness the actual projection can fall before or after this projection.  
+
+3. in the variety of population sizes, but the same allele frquency graph, we see in smaller population sizes reach fixation faster than those with larger populations. This makes sense because with a larger population size there is more chances to hold on to the allele within the population then smaller populations. So, biologically larger populations take longer to reach fixation. 
