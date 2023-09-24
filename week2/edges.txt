@@ -1,0 +1,15 @@
+digraph {TCT -> CTT
+TTC -> TCA
+TTA -> TAT
+TCA -> CAT
+ATT -> TTT
+ATT -> TTC
+CAT -> ATT
+ATT -> TTG
+TTG -> TGA
+CTT -> TTA
+TGA -> GAT
+GAT -> ATT
+TTC -> TCT
+TAT -> ATT
+}
