@@ -10,25 +10,26 @@ import matplotlib.pyplot as plt
 def main():
     # Load file names and fragment width
     forward_fname, reverse_fname, contf_fname, contr_fname, width, out_fname = sys.argv[1:]
+    width = int(width)
     # Define what genomic region we want to analyze
     target = "chr2R"
     chromstart = 10000000
     chromend =  12000000
     chromlen = chromend - chromstart
-    width = int(width)
+    
 
     # Load the sample bedgraph data, reusing the function we already wrote
-    forward = load_bedgraph(forward_fname, target, 0, chromlen)
-    reverse = load_bedgraph(reverse_fname, target, 0, chromlen)
+    forward = load_bedgraph(forward_fname, target, chromstart, chromend)
+    reverse = load_bedgraph(reverse_fname, target, chromstart, chromend)
 
     # Combine tag densities, shifting by our previously found fragment width
     sample_combined = numpy.zeros(chromlen)
-    sample_combined[width//2:] += forward[:-width//2] 
-    sample_combined[:-width//2] += reverse[width//2:]
+    sample_combined[width//2:] += forward[width//2:] 
+    sample_combined[:-width//2] += sample_combined[:-width//2]
  
     # Load the control bedgraph data, reusing the function we already wrote
-    fwd_control = load_bedgraph(contf_fname, target, 0, chromlen)
-    rev_control = load_bedgraph(contr_fname, target, 0, chromlen)
+    fwd_control = load_bedgraph(contf_fname, target, chromstart, chromend)
+    rev_control = load_bedgraph(contr_fname, target, chromstart, chromend)
     # Combine tag densities
     control_combined = fwd_control + rev_control
     
