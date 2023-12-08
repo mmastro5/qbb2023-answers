@@ -65,9 +65,13 @@ adata.uns['log1p']['base'] = None # This is needed due to a bug in scanpy
 
 # Step 3.2: Matching genes to cell types - why am i googling genes rn 
 
-marker_genes = [] # sorry i cannot google genes at this moment in time
+marker_genes = ['CD79A', 'LYZ', 'GNLY'] # sorry i cannot google genes at this moment in time
+#fig, ax = plt.subplots()
+sc.pl.umap(adata, color = marker_genes, title = ["CD79A", "LYZ", "GNLY"], show = False)
+#plt.tight_layout()
+plt.savefig("Exercise3.png")
 
-
-
-
-
+adata.rename_categories('leiden', ["0","Myeoloid","B-Cells","3","4", "NK cells", "6", "7"])
+sc.pl.umap(adata, color = 'leiden', title = "Umap", show = False)
+plt.tight_layout()
+plt.savefig("Exercise3.3.png")
